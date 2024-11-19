@@ -1,10 +1,8 @@
-# 组装及连接
-
-设备的主要接口及与周边设备的连线
+# OPiKVM Zero3
 
 -----
 
-## OrangePi zero3接口
+## OPiKVM Zero3接口
 
 ![zero3](wire/zero3.png){:width="600px" .off-glb}
 
@@ -62,7 +60,7 @@
 
 -----
 
-## 将PiKVM连接至您的主机
+## 将OPiKVM连接至您的主机
 
 - **1ATX版本**
 ![1atx_final](wire/1atx_final.jpg)

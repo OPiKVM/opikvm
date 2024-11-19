@@ -18,19 +18,19 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
     切勿在镜像上传过程中或以将镜像以可写模式连接到目标主机时，断开PiKVM电源。
     这可能会导致文件损坏
 
-!!! info "CD-ROM 最大镜像大小为2.2GB"
+<!-- !!! info "CD-ROM 最大镜像大小为2.2GB"
     这是由于[Linux内核限制](https://github.com/pikvm/pikvm/issues/322)，
     导致PiKVM无法模拟DVD驱动器。
     若要使用更大的启动镜像，请使用Flash驱动器模拟。
     如果无法做到这一点(例如有的镜像不支持Flash驱动引导，比如Windows安装iso)，
-    你可以试试[这个方法](#ventoy)。
+    你可以试试[这个方法](#ventoy)。 -->
 
 !!! info "只有在重新连接设备时，才能在CD-ROM和Flash之间更改介质类型"
-    可以使用Web UI中的`系统` -> [将主USB连接到服务器](system.md/#usb)开关来完成重新连接设备的操作。
+    可以使用Web UI中的`系统` -> [将OTG连接到目标主机](system.md/#usb)开关来完成重新连接设备的操作。
 
     **驱动模式是在`连接`镜像时确定的，而不是通过单击`驱动器模式`**时确定的。
 
-    简单来说，通过`驱动器模式`修改过模式后，需要点击`连接`使其更改生效，但是远程主机不会实时变化，你需要通过关开[将主USB连接到服务器](system.md/#usb)模拟USB拔插的操作来使远程主机端识别到驱动器类型的变化。
+    简单来说，通过`驱动器模式`修改过模式后，需要点击`连接`使其更改生效，但是远程主机不会实时变化，你需要通过关开[将OTG连接到目标主机](system.md/#usb)模拟USB拔插的操作来使远程主机端识别到驱动器类型的变化。
 
 -----
 
@@ -172,11 +172,14 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
     scp windows.iso /mnt/ventoy
     ```
 
-    或者windows下使用Winscp工具，将iso上传至/mnt/ventoy
+    或者使用FileBrowser工具，将iso上传至/mnt/ventoy
 
-    ![winscp](msd/winscp.jpg){.off-glb}
+    ![fb](msd/fb.jpg){:width="400px" .off-glb}
 
-    ![upload_winscp](msd/upload_winscp.jpg){.off-glb}
+    !!! tips
+        FileBrowser的根目录为/mnt
+
+    ![upload_fb](msd/upload_fb.jpg){.off-glb}
 
 - 待上传完成后取消挂载，并删除losetup设备
 

@@ -3,12 +3,15 @@
 !!! note "准备工作"
 
     * TF卡一张，建议容量16G以上Class10的内存卡
-    * 读卡器以及启动盘烧录软件([balenaEtcher](https://balenaetcher.org/))
+    * 读卡器以及启动盘烧录软件([balenaEtcher](https://www.balena.io/etcher))
 
-!!! info "镜像分为1.5GB内存版本和1/2/4G内存版本，请根据您的Orangepi zero3的内存大小选择对应镜像"
-    系统镜像下载地址:
+!!! info "OPiKVM zero3镜像分为1.5GB内存版本和1/2/4G内存版本，请根据您的Orangepi zero3的内存大小选择对应镜像"
 
-    百度网盘：https://pan.baidu.com/s/1TdOHb8n919HN9NJ6BFJ_OA?pwd=3yvl 提取码：3yvl
+    OPiKVM系统镜像下载地址:
+
+    * OPiKVM Zero3:百度网盘:https://pan.baidu.com/s/1TdOHb8n919HN9NJ6BFJ_OA?pwd=3yvl 提取码：3yvl
+
+    * OPiKVM CM4:百度网盘:
 
 -----
 

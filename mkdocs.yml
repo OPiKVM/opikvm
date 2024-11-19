@@ -1,14 +1,14 @@
-site_name: OrangePi Zero3 PIKVM-HAT
+site_name: OPiKVM
 site_author: Floyde.lcy
-copyright: Copyright © 2023 Floyde.lcy
-site_url: https://floydelcy.github.io/opikvm
+copyright: Copyright © 2024 Floyde.lcy
+site_url: https://opikvm.github.io/opikvm
 
 theme:
   language: zh
   name: material
   palette:
-    scheme: slate
-    primary: black
+    scheme: default
+    primary: orange
     accent: indigo
   features:
     # - header.autohide
@@ -23,7 +23,7 @@ theme:
     - search.share
     - search.suggest
     - content.code.copy
-    - toc.integrate
+    # - toc.integrate
 
   logo: _assets/logo.svg
   favicon: _assets/favicon.png
@@ -63,16 +63,26 @@ markdown_extensions:
     - pymdownx.details
     - pymdownx.superfences
     - pymdownx.magiclink
+    - pymdownx.emoji:
+        emoji_index: !!python/name:materialx.emoji.twemoji
+        emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
-  - 主页: index.md
-  - 物品清单: material.md
-  - 组装及连接: wire.md
-  - 首次启动: first_steps.md
-  - 默认密码以及2FA验证: auth.md
-  - 登录方式: login.md
-  - 系统设置: system.md
-  - ATX电源控制: atx.md
-  - MSD大容量存储驱动器: msd.md
-  - Tailscale: tailscale.md
+  - 主页:
+    - 简介: index.md
+    - 物品清单:
+      - OPiKVM CM4: material_cm4.md
+      - OPiKVM Zero3: material_zero3.md
+    - 组装及连接:
+      - OPiKVM CM4: wire_cm4.md
+      - OPiKVM Zero3: wire_zero3.md
+  - 开始使用:
+    - 首次启动: first_steps.md
+    - 快速入门: webui.md
+    - 默认密码以及2FA验证: auth.md
+    - 登录方式: login.md
+    - 系统设置: system.md
+    - ATX电源控制: atx.md
+    - MSD大容量存储驱动器: msd.md
+    - Tailscale: tailscale.md
   - 进阶用法: advanced.md

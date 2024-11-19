@@ -1,10 +1,10 @@
-# 物品清单
+# OPiKVM Zero3
+
+---
+
+## OPiKVM Zero3包含了哪些配件
 
 !!! warning "不包含OrangePi zero3主板，该主板请自行购买"
-
------
-
-## OrangePi Zero3 PIKVM-HAT包含了哪些配件
 
  目前HAT有两种版本，分别为4口ATX电源控制版本和1口ATX电源控制版本，两种版本都不包含Orangepi zero3核心板；
 
@@ -14,7 +14,7 @@
 | FPC转type-C连接器*1 | ![fpc](material/fpc.png){:width="50px" .off-glb} | FPC转type-C连接器*1 | ![fpc](material/fpc.png){:width="50px" .off-glb} |
 | ATX控制模块*1 | ![atx_board](material/atx_board.png){:width="60px" .off-glb} | ATX控制模块*1 | ![atx_board](material/atx_board.png){:width="60px" .off-glb} |
 
------
+---
 
 ## 需要自己准备的配件
 
