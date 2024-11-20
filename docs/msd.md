@@ -176,8 +176,8 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
 
     ![fb](msd/fb.jpg){:width="400px" .off-glb}
 
-    !!! warning
-        FileBrowser的默认账号:admin 密码:admin，根目录为/mnt，并尽快在`设置`修改密码
+    !!! tips
+        FileBrowser的默认根目录为/mnt
 
     ![upload_fb](msd/upload_fb.jpg){.off-glb}
 
