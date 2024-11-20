@@ -11,7 +11,7 @@
 
     * OPiKVM Zero3:百度网盘:https://pan.baidu.com/s/1TdOHb8n919HN9NJ6BFJ_OA?pwd=3yvl 提取码：3yvl
 
-    * OPiKVM CM4:百度网盘:
+    * OPiKVM CM4:百度网盘:https://pan.baidu.com/s/1WLU8PWNLYQHd7MqJCvai-g?pwd=x31u 提取码: x31u
 
 -----
 
