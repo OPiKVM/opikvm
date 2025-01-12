@@ -50,6 +50,7 @@ su -   #输入root密码切换至管理员权限
 kvmd-helper-otgmsd-remount rw
 mount -o loop,offset=$((512 * 2048)) /var/lib/kvmd/msd/USB-flash.img /mnt  #将U盘镜像挂载至filebrowser中
 ```
+
 ![simusb](simUSB/simUSB9.jpg){:width="800px" .off-glb}
 
 * 打开`系统`->`FileBrowser`
