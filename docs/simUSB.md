@@ -69,3 +69,34 @@ umount /mnt
 ```
 
 ![simusb](simUSB/simUSB12.jpg){:width="800px" .off-glb}
+
+## 希望模拟更大的U盘?
+
+那就创建一个更大的U盘
+
+```bash
+#输入root密码切换至管理员权限
+su -
+
+#将MSD分区挂载为读写
+kvmd-helper-otgmsd-remount rw
+
+#建立一个8G大小的空白镜像
+dd if=/dev/zero of=/var/lib/kvmd/msd/Flash-Customer.img bs=1M count=$((1024 * 8))  status=progress
+
+#给镜像分区
+echo -e 'o\nn\np\n1\n\n\nt\nc\nw\n' | fdisk /var/lib/kvmd/msd/Flash-Customer.img
+
+#mkfs
+loop=$(losetup -f)
+
+losetup -P $loop /var/lib/kvmd/msd/Flash-Customer.img
+
+mkfs.vfat ${loop}p1
+
+losetup -d $loop
+
+#给镜像添加权限
+chown kvmd:kvmd /var/lib/kvmd/msd/Flash-Customer.img
+
+```

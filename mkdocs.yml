@@ -88,4 +88,6 @@ nav:
     - 连接WIFI: wifi.md
     - 设置静态IP地址: staticip.md
     - 模拟U盘: simUSB.md
+    - 更换SD卡: card2msd.md
+    - 串口服务器: USBserial.md
   - 进阶用法: advanced.md
