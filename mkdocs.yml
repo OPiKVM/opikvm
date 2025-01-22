@@ -68,14 +68,13 @@ markdown_extensions:
         emoji_generator: !!python/name:materialx.emoji.to_svg
 
 nav:
-  - 主页:
-    - 简介: index.md
-    - 物品清单:
-      - OPiKVM CM4: material_cm4.md
-      - OPiKVM Zero3: material_zero3.md
-    - 组装及连接:
-      - OPiKVM CM4: wire_cm4.md
-      - OPiKVM Zero3: wire_zero3.md
+  - 简介: index.md
+  - 物品清单:
+    - OPiKVM CM4: material_cm4.md
+    - OPiKVM Zero3: material_zero3.md
+  - 组装及连接:
+    - OPiKVM CM4: wire_cm4.md
+    - OPiKVM Zero3: wire_zero3.md
   - 开始使用:
     - 首次启动: first_steps.md
     - 快速入门: webui.md

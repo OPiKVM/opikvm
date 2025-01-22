@@ -175,11 +175,30 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
     或者使用FileBrowser工具，将iso上传至/mnt/ventoy
 
     ![fb](msd/fb.jpg){:width="400px" .off-glb}
+    ![upload_fb](msd/upload_fb.jpg){.off-glb}
 
     !!! tips
         FileBrowser的默认根目录为/mnt
 
-    ![upload_fb](msd/upload_fb.jpg){.off-glb}
+    !!! tips
+        增加/更换ventoy内的安装镜像，不需要重建ventoy镜像，只需要增加/替换ventoy内的安装镜像，方法如下：
+
+        - 将ventoy.img挂载至/mnt/ventoy目录下
+            ```shell
+            su -
+            kvmd-helper-otgmsd-remount rw
+            mount -o loop,offset=1048576 /var/lib/kvmd/msd/ventoy.img /mnt/ventoy
+            df -h
+            ```
+        - 使用scp或者FileBrower将需要的安装包镜像文件更新至/mnt/ventoy，提前`df -h`确认/mnt/ventoy已挂载
+            ```shell
+            df -h
+            scp windows.iso /mnt/ventoy
+            ```
+        - 镜像传输完成后，取消ventoy.img挂载，完成更新镜像
+            ```shell
+            umount /mnt/ventoy
+            ```
 
 - 待上传完成后取消挂载，并删除losetup设备
 
@@ -193,23 +212,3 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
     ![load_ventoy](msd/load_ventoy.jpg){.off-glb}
     ![ventoy_lauguage](msd/ventoy_lauguage.jpg){.off-glb}
     ![windows_install](msd/windows_install.jpg){.off-glb}
-
-    !!! tips
-        更换ventoy内的安装镜像，不需要重建ventoy镜像，只需要替换ventoy内的安装镜像，方法如下：
-
-        - 将ventoy.img挂载至/mnt/ventoy目录下
-            ```shell
-            su -
-            kvmd-helper-otgmsd-remount rw
-            mount -o loop,offset=1048576 /var/lib/kvmd/msd/ventoy.img /mnt/ventoy
-            df -h
-            ```
-        - 使用scp或者winscp将需要的安装包镜像文件更新至/mnt/ventoy，提前`df -h`确认/mnt/ventoy已挂载
-            ```shell
-            df -h
-            scp windows.iso /mnt/ventoy
-            ```
-        - 镜像传输完成后，取消ventoy.img挂载，完成更新镜像
-            ```shell
-            umount /mnt/ventoy
-            ```
