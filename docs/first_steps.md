@@ -5,6 +5,8 @@
     * TF卡一张，建议容量16G以上Class10的内存卡
     * 读卡器以及启动盘烧录软件([balenaEtcher](https://www.balena.io/etcher))
 
+!!! warning "注意! OPiKVM CM4发货时已经预先刷好镜像,您不需要再烧录,如果需要重新刷镜像按照下列方法烧录镜像"
+
 !!! info "OPiKVM zero3镜像分为1.5GB内存版本和1/2/4G内存版本，请根据您的Orangepi zero3的内存大小选择对应镜像"
 
     OPiKVM系统镜像下载地址:
