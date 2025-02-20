@@ -1,6 +1,6 @@
 site_name: OPiKVM
 site_author: Floyde.lcy
-copyright: Copyright © 2024 Floyde.lcy
+copyright: Copyright &copy; 2023-2025 Floyde.lcy
 site_url: https://opikvm.github.io/opikvm
 
 theme:
@@ -54,6 +54,11 @@ plugins:
       lang:
         - zh
       separator: '[\s\u200b\-]'
+  - git-revision-date-localized:
+      enable_creation_date: true
+      timezone: Asia/Shanghai
+      type: date
+      locale: zh
 
 markdown_extensions:
     - admonition
@@ -63,9 +68,10 @@ markdown_extensions:
     - pymdownx.details
     - pymdownx.superfences
     - pymdownx.magiclink
+    - md_in_html
     - pymdownx.emoji:
-        emoji_index: !!python/name:materialx.emoji.twemoji
-        emoji_generator: !!python/name:materialx.emoji.to_svg
+        emoji_index: !!python/name:material.extensions.emoji.twemoji
+        emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
   - 简介: index.md

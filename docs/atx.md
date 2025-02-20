@@ -24,7 +24,7 @@ ATX电源控制可以控制远程主机的开/关机，重启，且可以显示�
 
 ## 4ATX-HAT版本
 
-- 4ATX的ATX电源控制按钮在`KVM切换 & 脚本`选项卡内，比1ATX版本多出`KVM切换器`端口按钮，用来控制[4口KVM切换器](material_zero3.md/#_2)对HDMI端口进行切换。
+- 4ATX的ATX电源控制按钮在`KVM切换 & 脚本`选项卡内，比1ATX版本多出`KVM切换器`端口按钮，用来控制[4口KVM切换器](material_zero3.md/#_1)对HDMI端口进行切换。
 
     ![4atx_ctrl](atx/4atx_ctrl.jpg){ .off-glb }
 

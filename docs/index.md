@@ -1,6 +1,35 @@
 # 简介
 
+<div class="grid cards" markdown>
+
+- :material-clock-fast:{ .lg .middle } __安装迅速__
+
+    -----
+
+    开箱即插即用
+
+- :material-application-brackets-outline:{ .lg .middle } __非侵入式控制__
+
+    -----
+
+    无需在被控机安装软件，也无需跳板机
+
+- :material-cog-outline:{ .lg .middle } __功能强大__
+
+    -----
+
+    BIOS级别的KVM 远程控制、ATX 电源管理、 USB 虚拟外设、H.264硬件编码串流
+
+- :material-chip:{ .lg .middle } __性能强劲__
+
+    -----
+
+    RK3566主控,支持1080P 60FPS硬件编码,丝滑流畅
+
+</div>
+
 -----
+
 ## 关于OPiKVM
 
 OPiKVM基于开源的PiKVM系统针对国产Pi平台进行适配，意在打造一个平价的IP-KVM设备，通过该系统可以轻松的对主机进行BIOS级别的维护管理。
@@ -34,9 +63,7 @@ OPiKVM基于开源的PiKVM系统针对国产Pi平台进行适配，意在打造�
 
 所有版本的更新记录均列于此。每个版本的更新说明包括新功能、修复的 bug 和任何重大变更。
 
-### [KVMD4.43] - 2025-2-19
-
-- **新特性**
+### :material-open-source-initiative:{ .lg .middle } __[KVMD4.43] - 2025-2-19__
 
 - 全新升级版本,基于KVMD4.43版本发布
 - 优化H.264硬件编码效率,支持1080p 60FPS，更加丝滑流畅
@@ -44,9 +71,7 @@ OPiKVM基于开源的PiKVM系统针对国产Pi平台进行适配，意在打造�
 
 -----
 
-### [KVMD3.333] - 2024-11-20
-
-- **新特性**
+### :material-open-source-initiative:{ .lg .middle } [KVMD3.333] - 2024-11-20
 
 - 首次发布版本,基于KVMD3.333版本发布
 - 实现h.264硬件编码
