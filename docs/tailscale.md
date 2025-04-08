@@ -1,6 +1,6 @@
 # Tailscale
 
-[Tailscale VPN](https://tailscale.com/)可用于从互联网访问PiKVM相较于端口转发具有更高的安全性。
+[Tailscale VPN](https://tailscale.com/)可用于快速搭建从互联网访问OPiKVM的虚拟专用网络,相较于端口转发具有更高的安全性。
 Tailscale是一种方便且免费(个人使用)的工具，用于建立小型专属私有网络。
 
 基本的Tailscale配置命令如下所示。

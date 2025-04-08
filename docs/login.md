@@ -13,7 +13,7 @@
 
     ![oled](login/oled.jpg){:width="150px" .off-glb}
 
-    ![login](login/login.png){.off-glb}
+    ![login](login/login.jpg){.off-glb}
 
 - 登录成功后会跳转至网页控制台，分别为`KVM`、`Terminal终端`、`登出`按钮
 
@@ -39,7 +39,7 @@
 
 1. 控制台点击`Terminal终端`按钮，进入Web Terminal终端
 
-    ![web_terminal](login/web_terminal.png){.off-glb}
+    ![web_terminal](login/web_terminal.jpg){.off-glb}
 
 2. `KVM`界面下点击`系统` > `终端`
 

@@ -83,13 +83,14 @@ nav:
     - OPiKVM Zero3: wire_zero3.md
   - 开始使用:
     - 首次启动: first_steps.md
+    - 更新系统: upgrade.md
     - 快速入门: webui.md
     - 默认密码以及2FA验证: auth.md
-    - 登录方式: login.md
+    # - 登录方式: login.md
     - 系统设置: system.md
     - ATX电源控制: atx.md
     - MSD大容量存储驱动器: msd.md
-    - Tailscale: tailscale.md
+    - Tailscale VPN: tailscale.md
     - 连接WIFI: wifi.md
     - 设置静态IP地址: staticip.md
     - 模拟U盘: simUSB.md

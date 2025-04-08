@@ -3,33 +3,8 @@
 !!! note "准备工作"
 
     * TF卡一张，建议容量16G以上Class10的内存卡
-    * 读卡器以及启动盘烧录软件([balenaEtcher](https://www.balena.io/etcher))
 
 !!! warning "注意! OPiKVM CM4发货时已经预先刷好镜像,您不需要再烧录,如果需要重新刷镜像按照下列方法烧录镜像"
-
-!!! info "OPiKVM zero3镜像分为1.5GB内存版本和1/2/4G内存版本，请根据您的Orangepi zero3的内存大小选择对应镜像"
-
-    OPiKVM系统镜像下载地址:
-
-    * OPiKVM Zero3:百度网盘:https://pan.baidu.com/s/1TdOHb8n919HN9NJ6BFJ_OA?pwd=3yvl 提取码：3yvl
-
-    * OPiKVM CM4:百度网盘:https://pan.baidu.com/s/1WLU8PWNLYQHd7MqJCvai-g?pwd=x31u 提取码: x31u
-
------
-
-## 使用balenaEtcher烧录镜像的具体步骤如下所示
-
-* 首先选择要烧录的镜像文件的路径
-
-* 然后选择TF卡的盘符
-
-* 最后点击Flash就会开始烧录Linux镜像到TF卡中
-
-![img](first_steps/balenEtcher1.jpg){:width="600px" .off-glb}
-
-* 成功烧录完成后balenaEtcher的显示界面如下图所示，如果显示绿色的指示图标 说明镜像烧录成功，此时就可以退出balenaEtcher，然后拔出TF卡插入到开发板的TF卡槽中使用了。
-
-![img](first_steps/balenEtcher2.jpg){:width="600px" .off-glb}
 
 -----
 
@@ -38,12 +13,13 @@
 !!! warning "切记 **不要!** 插入电压输出大于5V的电源适配器，会烧坏开发板。"
 
     * 连接一个 5V/3A 的 USB Type-C 接口的高品质的电源适配器
-    * 系统上电启动过程中很多不稳定的现象基本都是供电有问题导致的，所以一个靠谱的电源适配器很重要。如果启动过程中发现有不断重启的现象，请更换下电源或者Type-C数据线再试下。
-    * ype-C电源接口是不支持PD协商的。
+    * Type-C电源接口不支持PD协商
 
 !!! tip
 
     * 首次上电时系统会进行初始化，此时oled屏幕上会提示"系统正在初始化中，请勿中断"，请稍微等待至屏幕出现设备ip地址后，系统加载完成。
+
+    * ![oled](login/oled.jpg){:width="150px" .off-glb}
 
 ## 等待系统初始化完成
 
@@ -90,3 +66,55 @@
     **或者，您也可以启用[2FA双因素身份验证](auth.md#2fatwo-factor-authentication)以提高安全性。**
 
     *在PiKVM首次启动时不需要更改[VNCAuth密钥](https://github.com/pikvm/pikvm/blob/master/docs/vnc.md)和[IPMI密码](https://github.com/pikvm/pikvm/blob/master/docs/ipmi.md)，因为这些服务在默认情况下是禁用的。*
+
+## 登录方式
+
+!!! tips
+
+    * Web UI登录用于访问远程主机
+    * SSH用于登录PiKVM本机系统
+
+-----
+
+### Web UI登录
+
+- 打开浏览器输入PiKVM的ip地址，ip地址会在oled屏幕上显示,输入[`PiKVM Web`](auth.md)用户名密码，如果开启了[2FA](auth.md#2fatwo-factor-authentication)功能，也请输入2FA code
+
+    ![login](login/login.jpg){.off-glb}
+
+- 登录成功后会跳转至网页控制台，分别为`KVM`、`Terminal终端`、`登出`按钮
+
+    ![session](login/session.jpg){.off-glb}
+
+-----
+
+### KVM
+
+- 点击`KVM`按钮进入KVM功能界面，可以看到采集到远程主机的HDMI输出画面
+
+    ![kvm_info](img/kvm_info.jpg){.off-glb}
+
+- 点击左上角OPiKVM图标，提示离开此网站，点击离开，返回主控制台
+
+    ![return](login/return.jpg){.off-glb}
+
+-----
+
+### Web Terminal终端
+
+有以下两种方式打开Web终端
+
+1. 控制台点击`Terminal`按钮，进入Web Terminal终端
+
+    ![web_terminal](login/web_terminal.jpg){.off-glb}
+
+2. `KVM`界面下点击`系统` > `终端`
+
+    ![kvm_terminal](login/kvm_terminal.jpg){.off-glb}
+
+    Web Terminnal会以[`kvmd-webterm`](auth.md)账户默认登录，使用浏览器后退按钮返回控制台
+
+    !!! example "也可以使用SSH终端软件通过root账号进行登录"
+        ```console
+        ssh root@PiKVM地址
+        ```
