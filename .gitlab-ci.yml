@@ -9,6 +9,7 @@ before_script:
   - pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mkdocs-material
   - pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mkdocs-glightbox
   - pip install -i https://pypi.tuna.tsinghua.edu.cn/simple mkdocs-git-revision-date-localized-plugin
+  - pip install git+https://github.com/pikvm/markdown-include
 
 pages:
   script:

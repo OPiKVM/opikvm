@@ -30,11 +30,11 @@
 
 -----
 
-## 关于OPiKVM
+## 关于 OPiKVM
 
-OPiKVM基于开源的PiKVM系统针对国产Pi平台进行适配，意在打造一个平价的IP-KVM设备，通过该系统可以轻松的对主机进行BIOS级别的维护管理。
+OPiKVM 基于开源的 PiKVM 系统针对国产Pi平台进行适配，意在打造一个平价的 IP-KVM 设备，通过该系统可以轻松的对主机进行 BIOS 级别的维护管理。
 
-目前OPiKVM有两款产品：OPiKVM Zero3和OPiKVM CM4，两款最大的区别在于CM4支持了H.264的硬件编码串流，相比于Zero3的MJPEG编码，极大的减少了网络带宽需求。
+目前 OPiKVM 有两款产品：OPiKVM Zero3 和 OPiKVM CM4，两款最大的区别在于 CM4 支持了 H.264 的硬件编码串流，相比于 Zero3 的M JPEG 编码，极大的减少了网络带宽需求。
 
 | ![1atx_shell](img/1atx_shell.png){:width="400px" .off-glb} | ![cm4](img/cm4.png){:width="400px" .off-glb} |
 | :--------: | :--------: |
@@ -63,24 +63,30 @@ OPiKVM基于开源的PiKVM系统针对国产Pi平台进行适配，意在打造�
 
 所有版本的更新记录均列于此。每个版本的更新说明包括新功能、修复的 bug 和任何重大变更。
 
-### :material-open-source-initiative:{ .lg .middle } __[KVMD4.43] - 2025-2-19__
+### :material-open-source-initiative:{ .lg .middle } __[ KVMD 4.67 ] - 2025-4-28__
 
-- 全新升级版本,基于KVMD4.43版本发布
-- 优化H.264硬件编码效率,支持1080p 60FPS，更加丝滑流畅
-- 新增H.264 over HTTP模式,免受webrtc被防火墙的困扰
+- 升级版本,基于 KVMD 4.67 版本发布
+- 新增[麦克风](audio.md#_3)功能
+- 新增 MSD 支持 CD/DVD 模式，支持挂载大于4GB ISO镜像
+- 新增 ntfs3 支持，提升模拟U盘功能在 windows 操作系统下的读取/写入速度
+- 新增 OPiKVM-AP 热点服务以及 [Wi-Fi 配网服务](netword.md#wi-fi)
+
+### :material-open-source-initiative:{ .lg .middle } [ KVMD 4.43 ] - 2025-2-19
+
+- 基于 KVMD 4.43 版本发布
+- 优化 H.264 硬件编码效率,支持1080p 60FPS，更加丝滑流畅
+- 新增 H.264 over HTTP 模式,免受 webrtc 被防火墙的困扰
+
+### :material-open-source-initiative:{ .lg .middle } [ KVMD 3.333 ] - 2024-11-20
+
+- 首次发布版本,基于 KVMD 3.333 版本发布
+- 实现 H.264 硬件编码
 
 -----
 
-### :material-open-source-initiative:{ .lg .middle } [KVMD3.333] - 2024-11-20
+## 关于 PiKVM
 
-- 首次发布版本,基于KVMD3.333版本发布
-- 实现h.264硬件编码
-
------
-
-## 关于PiKVM
-
-PiKVM是一个基于树莓派硬件的开源KVM over IP系统
+PiKVM 是一个基于树莓派硬件的开源 KVM over IP 系统
 
 ![kvm_info](img/kvm_info.jpg)
 

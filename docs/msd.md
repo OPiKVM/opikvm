@@ -4,7 +4,7 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
 
 | 查看Web UI中的“驱动器”菜单 |
 |----------------------------------------|
-| ![msd_menu](msd/msd_menu.jpg){:width="400px" .off-glb} |
+| ![msd_menu](img/msd/msd_menu.jpg){:width="400px" .off-glb} |
 
 提供如下操作:
 
@@ -38,11 +38,11 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
 
 - 点击`选择镜像` -> `选择文件`，选择镜像。
 
-    ![select_image](msd/select_image.jpg){:width="400px" .off-glb}
+    ![select_image](img/msd/select_image.jpg){:width="400px" .off-glb}
 
 - 点击上传,出现上传进度条，点击中止可以中断上传任务。
 
-    ![upload_image](msd/upload_image.jpg){:width="400px" .off-glb}
+    ![upload_image](img/msd/upload_image.jpg){:width="400px" .off-glb}
 
 -----
 
@@ -50,11 +50,11 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
 
 - `镜像`下拉框中选择镜像，点击`连接`，通过`ATX`打开远程主机电源，进入bios启动项页面，选择**PiKVM CD-ROM Driver**，回车开始引导
 
-    ![connect_image](msd/connect_image.jpg){.off-glb}
+    ![connect_image](img/msd/connect_image.jpg){.off-glb}
 
 - 远程主机开始引导镜像
 
-    ![load_image](msd/load_image.jpg){.off-glb}
+    ![load_image](img/msd/load_image.jpg){.off-glb}
 
 -----
 
@@ -62,7 +62,7 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
 
 - 点击`断开`，大容量存储驱动器状态成为已断开连接状态下，`镜像`下拉选中需要操作的镜像，点击下拉框右侧的下载、删除按钮对镜像进行相应操作。
 
-    ![delete_image](msd/delete_image.jpg){:width="400px" .off-glb}
+    ![delete_image](img/msd/delete_image.jpg){:width="400px" .off-glb}
 
 -----
 
@@ -76,11 +76,11 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
 
 - 挂载U盘，点击`脚本` -> `挂载虚拟U盘`
 
-    ![mount_usb](msd/mount_usb.jpg){.off-glb}
+    ![mount_usb](img/msd/mount_usb.jpg){.off-glb}
 
 - 卸载U盘，点击`脚本` -> `卸载虚拟U盘`
 
-    ![mount_usb](msd/mount_usb.jpg){.off-glb}
+    ![mount_usb](img/msd/mount_usb.jpg){.off-glb}
 
 附加的驱动器可能会涉及兼容性的问题。假设同一USB上有多个驱动器，可能在极少数BIOS/UEFI下导致无法识别到对应的驱动器。出于严谨，此功能需要手动激活。
 
@@ -174,13 +174,13 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
 
     或者使用FileBrowser工具，将iso上传至/mnt/ventoy
 
-    ![fb](msd/fb.jpg){:width="400px" .off-glb}
-    ![upload_fb](msd/upload_fb.jpg){.off-glb}
+    ![fb](img/msd/fb.jpg){:width="400px" .off-glb}
+    ![upload_fb](img/msd/upload_fb.jpg){.off-glb}
 
-    !!! tips
+    !!! 提示
         FileBrowser的默认根目录为/mnt
 
-    !!! tips
+    !!! 提示
         增加/更换ventoy内的安装镜像，不需要重建ventoy镜像，只需要增加/替换ventoy内的安装镜像，方法如下：
 
         - 将ventoy.img挂载至/mnt/ventoy目录下
@@ -209,6 +209,6 @@ MSD(Mass Storage Drive)大容量存储驱动器，当您需要使用镜像来恢
 
 - 在`驱动器`使用Flash模式挂载`ventoy.img`镜像，bios选择从PiKVM启动引导进入ventoy，按`L`键选择语言，选中镜像后回车选择正常启动，则可以开始windows安装程序，等待3-5分钟，安装程序开始。
 
-    ![load_ventoy](msd/load_ventoy.jpg){.off-glb}
-    ![ventoy_lauguage](msd/ventoy_lauguage.jpg){.off-glb}
-    ![windows_install](msd/windows_install.jpg){.off-glb}
+    ![load_ventoy](img/msd/load_ventoy.jpg){.off-glb}
+    ![ventoy_lauguage](img/msd/ventoy_lauguage.jpg){.off-glb}
+    ![windows_install](img/msd/windows_install.jpg){.off-glb}

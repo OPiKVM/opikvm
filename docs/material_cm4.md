@@ -8,8 +8,8 @@
 
 | **OPiKVM CM4** | |
 | :--- | :--- |
-| 主机 x 1 | ![CM4_pic](material/CM4_pic.png){:width="400px" .off-glb} |
-| ATX控制小板 x 1 | ![atx_board](material/atx_board.png){:width="60px" .off-glb} |
+| 主机 x 1 | ![CM4_pic](img/material/CM4_pic.png){:width="400px" .off-glb} |
+| ATX控制小板 x 1 | ![atx_board](img/material/atx_board.png){:width="60px" .off-glb} |
 | 5V3A电源 x 1 | |
 | Type-C电源线 x 1 | |
 | Type-A口转Typc-C口USB-OTG线 x 1 | |

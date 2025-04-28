@@ -9,7 +9,7 @@ su - #输入root密码切换至管理员权限
 apt install picocom -y
 ```
 
-![serail](serial/serial.jpg){:width="800px" .off-glb}
+![serail](img/serial/serial.jpg){:width="800px" .off-glb}
 
 * 插入USB转串口设备，查看dev,一般为/dev/ttyUSB0,使用picocom连接串口
 
@@ -21,4 +21,4 @@ ls -l /dev/ttyUSB*
 picocom -b 15000000 /dev/ttyUSB0
 ```
 
-![serail](serial/serial1.jpg){:width="800px" .off-glb}
+![serail](img/serial/serial1.jpg){:width="800px" .off-glb}

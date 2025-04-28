@@ -2,21 +2,21 @@
 
 按照文档首次启动后，浏览器访问OPiKVM地址(以Chrome为例)
 
-![P1](webui/Page1.jpg){:width="500px" .off-glb}
+![P1](img/webui/Page1.jpg){:width="500px" .off-glb}
 
 点击 高级/Advanced
 
-![P2](webui/Page2.jpg){:width="500px" .off-glb}
+![P2](img/webui/Page2.jpg){:width="500px" .off-glb}
 
 点击 继续访问/Proceed
 
 !!! note "账号密码位于**左侧首次**启动文档中"
 
-![Login](webui/Login.jpg){:width="500px" .off-glb}
+![Login](img/webui/Login.jpg){:width="500px" .off-glb}
 
 填写账号密码，如果您开启了2FA验证也请填入2FA验证码.
 
-![Portal](webui/Portal.jpg){:width="500px" .off-glb}
+![Portal](img/webui/Portal.jpg){:width="500px" .off-glb}
 
 ??? note "展开查看说明"
 
@@ -24,7 +24,7 @@
     2. 打开web终端
     3. 退出登录
 
-![Toolbar](webui/Toolbar.jpg){:width="500px" .off-glb}
+![Toolbar](img/webui/Toolbar.jpg){:width="500px" .off-glb}
 
 ??? note "展开查看说明"
 
@@ -36,7 +36,7 @@
     6. 你可以在这里找到大部分快捷方式(目前仅限windows)(不可编辑)
     7. 自定义脚本
 
-![System](webui/System.jpg){:width="500px" .off-glb}
+![System](img/webui/System.jpg){:width="500px" .off-glb}
 
 ??? note "展开查看说明"
     1. 系统图标
@@ -50,11 +50,11 @@
     2. ONLY for MJPEG mode
     3. ONLY for H.264 (WebRTC) mode
 
-![ATX](webui/ATX.jpg){:width="200px" .off-glb}
+![ATX](img/webui/ATX.jpg){:width="200px" .off-glb}
 
 1. ATX电源操作
 
-![Driver](webui/Driver.jpg){:width="400px" .off-glb}
+![Driver](img/webui/Driver.jpg){:width="400px" .off-glb}
 
 1. MSD镜像上传/挂载
 

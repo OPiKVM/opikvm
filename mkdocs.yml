@@ -3,6 +3,10 @@ site_author: Floyde.lcy
 copyright: Copyright &copy; 2023-2025 Floyde.lcy
 site_url: https://opikvm.github.io/opikvm
 
+repo_name: OPiKVM
+repo_url: https://github.com/floydelcy/kvmd/tree/kvmd-rockchip
+edit_uri: ""
+
 theme:
   language: zh
   name: material
@@ -72,6 +76,8 @@ markdown_extensions:
     - pymdownx.emoji:
         emoji_index: !!python/name:material.extensions.emoji.twemoji
         emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    - markdown_include.include:
+        base_path: docs
 
 nav:
   - 简介: index.md
@@ -83,17 +89,19 @@ nav:
     - OPiKVM Zero3: wire_zero3.md
   - 开始使用:
     - 首次启动: first_steps.md
+    - 如何接入网络: network.md
     - 更新系统: upgrade.md
     - 快速入门: webui.md
-    - 默认密码以及2FA验证: auth.md
-    # - 登录方式: login.md
-    - 系统设置: system.md
+    - 身份验证以及2FA验证: auth.md
+    - 视频模式: video.md
+    - 音频/麦克风: audio.md
     - ATX电源控制: atx.md
+    - 修改PID/VID: pidvid.md
     - MSD大容量存储驱动器: msd.md
+    - 模拟U盘/文件传输: simUSB.md
+    - 更换SD卡: card2msd.md
     - Tailscale VPN: tailscale.md
     - 连接WIFI: wifi.md
     - 设置静态IP地址: staticip.md
-    - 模拟U盘: simUSB.md
-    - 更换SD卡: card2msd.md
     - 串口服务器: USBserial.md
   - 进阶用法: advanced.md

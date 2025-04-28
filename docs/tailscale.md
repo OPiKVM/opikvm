@@ -27,7 +27,7 @@ Tailscale是一种方便且免费(个人使用)的工具，用于建立小型专
 
     你可以对PiKVM主机设置key永不过期[disable key expiry](https://tailscale.com/kb/)
 
-    ![tailscale](tailscale/tailscale.png){:width="800px" .off-glb}
+    ![tailscale](img/tailscale/tailscale.png){:width="800px" .off-glb}
 
 3. 身份验证成功后,对PiKVM进行重启确认一切运行正常。
 

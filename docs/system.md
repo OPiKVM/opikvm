@@ -9,7 +9,7 @@
 
 | 查看Web UI中的“系统”菜单 |
 |----------------------------------------|
-| ![system_menu](system/system_menu.png){:width="400px" .off-glb} |
+| ![system_menu](img/system/system_menu.png){:width="400px" .off-glb} |
 
 -----
 
@@ -17,7 +17,7 @@
 
 - `分辨率`下拉菜单选择分辨率，进行分辨率的调整，最大支持1920x1080 30FPS
 
-    ![system_resolution](system/system_resolution.png){:width="400px" .off-glb}
+    ![system_resolution](img/system/system_resolution.png){:width="400px" .off-glb}
 
     !!! tips "默认分辨率为1024*768 最大FPS30，如果想要修改PiKVM默认分辨率，请参考"
 

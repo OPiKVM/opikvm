@@ -1,6 +1,6 @@
 # 登录方式
 
-!!! tips
+!!! 提示
 
     * Web UI登录用于访问远程主机
     * SSH用于登录PiKVM本机系统
@@ -9,15 +9,15 @@
 
 ## Web UI登录
 
-- 打开浏览器输入PiKVM的ip地址，ip地址会在oled屏幕上显示,输入[`PiKVM Web`](auth.md)用户名密码，如果开启了[2FA](auth.md#2fatwo-factor-authentication)功能，也请输入2FA code
+- 打开浏览器输入PiKVM的ip地址，ip地址会在oled屏幕上显示,输入[`PiKVM Web`](auth.md)用户名密码，如果开启了[2FA](auth.md#2fa-two-factor-authentication)功能，也请输入2FA code
 
-    ![oled](login/oled.jpg){:width="150px" .off-glb}
+    ![oled](img/login/oled.jpg){:width="150px" .off-glb}
 
-    ![login](login/login.jpg){.off-glb}
+    ![login](img/login/login.jpg){.off-glb}
 
 - 登录成功后会跳转至网页控制台，分别为`KVM`、`Terminal终端`、`登出`按钮
 
-    ![session](login/session.jpg){.off-glb}
+    ![session](img/login/session.jpg){.off-glb}
 
 -----
 
@@ -29,7 +29,7 @@
 
 - 点击左上角PiKVM图标，提示离开此网站，点击离开，返回主控制台
 
-    ![return](login/return.jpg){.off-glb}
+    ![return](img/login/return.jpg){.off-glb}
 
 -----
 
@@ -39,11 +39,11 @@
 
 1. 控制台点击`Terminal终端`按钮，进入Web Terminal终端
 
-    ![web_terminal](login/web_terminal.jpg){.off-glb}
+    ![web_terminal](img/login/web_terminal.jpg){.off-glb}
 
 2. `KVM`界面下点击`系统` > `终端`
 
-    ![kvm_terminal](login/kvm_terminal.jpg){.off-glb}
+    ![kvm_terminal](img/login/kvm_terminal.jpg){.off-glb}
 
     Web Terminnal会以[`kvmd-webterm`](auth.md)账户默认登录，使用浏览器后退按钮返回控制台
 

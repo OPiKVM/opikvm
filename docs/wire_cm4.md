@@ -4,7 +4,7 @@
 
 ## OPiKVM CM4接口
 
-![cm4_if](wire/cm4_interface.png){:width="600px" .off-glb}
+![cm4_if](img/wire/cm4_interface.png){:width="600px" .off-glb}
 
 1. OTG接口，连接目标主机的USB接口
 2. HDMI IN接口，连接目标主机HDMI输出接口
@@ -12,7 +12,7 @@
 4. HDMI OUT口，直通接口连接显示器
 5. SD卡槽
 
-![cm4_if1](wire/cm4_interface1.png){:width="500px" .off-glb}
+![cm4_if1](img/wire/cm4_interface1.png){:width="500px" .off-glb}
 
 1. TYPE-C电源接口
 2. USB接口
@@ -22,4 +22,4 @@
 
 ## 将OPiKVM连接至目标主机
 
-![wire](wire/wired.png)
+![wire](img/wire/wired.png)

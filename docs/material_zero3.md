@@ -10,9 +10,9 @@
 
 | 4ATX版本 || 1ATX版本 ||
 |---|---|---|---|
-| 4ATX-HAT扩展板*1 | ![4atx_pcb](material/4atx_pcb.png){:width="400px" .off-glb} | 1ATX扩展板*1 | ![1atx_pcb](material/1atx_pcb.png){:width="400px" .off-glb} |
-| FPC转type-C连接器*1 | ![fpc](material/fpc.png){:width="50px" .off-glb} | FPC转type-C连接器*1 | ![fpc](material/fpc.png){:width="50px" .off-glb} |
-| ATX控制模块*1 | ![atx_board](material/atx_board.png){:width="60px" .off-glb} | ATX控制模块*1 | ![atx_board](material/atx_board.png){:width="60px" .off-glb} |
+| 4ATX-HAT扩展板*1 | ![4atx_pcb](img/material/4atx_pcb.png){:width="400px" .off-glb} | 1ATX扩展板*1 | ![1atx_pcb](img/material/1atx_pcb.png){:width="400px" .off-glb} |
+| FPC转type-C连接器*1 | ![fpc](img/material/fpc.png){:width="50px" .off-glb} | FPC转type-C连接器*1 | ![fpc](img/material/fpc.png){:width="50px" .off-glb} |
+| ATX控制模块*1 | ![atx_board](img/material/atx_board.png){:width="60px" .off-glb} | ATX控制模块*1 | ![atx_board](img/material/atx_board.png){:width="60px" .off-glb} |
 
 ---
 
@@ -31,7 +31,7 @@
 
             *针对4ATX版本，可以选配4口KVM切换器同时接入4台主机实时切换4台设备的输出*
 
-            ![kvm_switch](material/kvm_switch.jpg){:width="200px" .off-glb}
+            ![kvm_switch](img/material/kvm_switch.jpg){:width="200px" .off-glb}
 
         - 3D打印外壳
 
@@ -40,6 +40,6 @@
             百度网盘链接：链接：https://pan.baidu.com/s/1gMFjYP-u6TSE1NCVVAt3Cg?pwd=m6f3
             提取码：m6f3
 
-            ![1atx_shell](material/1atx_shell_3D.png){:width="300px" .off-glb}
+            ![1atx_shell](img/material/1atx_shell_3D.png){:width="300px" .off-glb}
 
-            ![4atx_shell](material/4atx_shell_3D.png){:width="300px" .off-glb}
+            ![4atx_shell](img/material/4atx_shell_3D.png){:width="300px" .off-glb}

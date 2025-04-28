@@ -10,4 +10,4 @@ su - #输入root密码切换至管理员权限
 card2msd.sh #执行此命令对SD卡进行格式化
 ```
 
-![card2msd](card2msd/card2msd.jpg){:width="800px" .off-glb}
+![card2msd](img/card2msd/card2msd.jpg){:width="800px" .off-glb}
