@@ -69,7 +69,7 @@ OPiKVM 基于开源的 PiKVM 系统针对国产Pi平台进行适配，意在打�
 - 新增[麦克风](audio.md#_3)功能
 - 新增 MSD 支持 CD/DVD 模式，支持挂载大于4GB ISO镜像
 - 新增 ntfs3 支持，提升模拟U盘功能在 windows 操作系统下的读取/写入速度
-- 新增 OPiKVM-AP 热点服务以及 [Wi-Fi 配网服务](netword.md#wi-fi)
+- 新增 OPiKVM-AP 热点服务以及 [Wi-Fi 配网服务](network.md#wi-fi)
 
 ### :material-open-source-initiative:{ .lg .middle } [ KVMD 4.43 ] - 2025-2-19
 

@@ -72,6 +72,8 @@ markdown_extensions:
     - pymdownx.details
     - pymdownx.superfences
     - pymdownx.magiclink
+    - pymdownx.tabbed:
+        alternate_style: true
     - md_in_html
     - pymdownx.emoji:
         emoji_index: !!python/name:material.extensions.emoji.twemoji
@@ -80,28 +82,23 @@ markdown_extensions:
         base_path: docs
 
 nav:
-  - 简介: index.md
-  - 物品清单:
-    - OPiKVM CM4: material_cm4.md
-    - OPiKVM Zero3: material_zero3.md
-  - 组装及连接:
-    - OPiKVM CM4: wire_cm4.md
-    - OPiKVM Zero3: wire_zero3.md
-  - 开始使用:
-    - 首次启动: first_steps.md
-    - 如何接入网络: network.md
-    - 更新系统: upgrade.md
-    - 快速入门: webui.md
-    - 身份验证以及2FA验证: auth.md
-    - 视频模式: video.md
-    - 音频/麦克风: audio.md
-    - ATX电源控制: atx.md
-    - 修改PID/VID: pidvid.md
-    - MSD大容量存储驱动器: msd.md
-    - 模拟U盘/文件传输: simUSB.md
-    - 更换SD卡: card2msd.md
-    - Tailscale VPN: tailscale.md
-    - 连接WIFI: wifi.md
-    - 设置静态IP地址: staticip.md
-    - 串口服务器: USBserial.md
-  - 进阶用法: advanced.md
+  - "简介": index.md
+  - "使用手册":
+    - "OPiKVM CM4": CM4.md
+  - "功能指南":
+    - "如何接入网络": network.md
+    - "更新系统": upgrade.md
+    - "Web UI": webui.md
+    - "身份验证以及2FA验证": auth.md
+    - "视频模式": video.md
+    - "音频/麦克风": audio.md
+    - "ATX控制板": atx_board.md
+    - "修改PID/VID": pidvid.md
+    - "MSD大容量存储驱动器": msd.md
+    - "模拟U盘/文件传输": simUSB.md
+    - "更换SD卡": card2msd.md
+    - "Tailscale VPN": tailscale.md
+    - "连接WIFI": wifi.md
+    - "设置静态IP地址": staticip.md
+    - "串口服务器": USBserial.md
+  - "进阶用法": advanced.md

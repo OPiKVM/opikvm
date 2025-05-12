@@ -10,8 +10,6 @@
 
 点击 继续访问/Proceed
 
-!!! note "账号密码位于**左侧首次**启动文档中"
-
 ![Login](img/webui/Login.jpg){:width="500px" .off-glb}
 
 填写账号密码，如果您开启了2FA验证也请填入2FA验证码.
