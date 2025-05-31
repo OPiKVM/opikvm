@@ -10,16 +10,11 @@ Tailscale是一种方便且免费(个人使用)的工具，用于建立小型专
 
 ## PiKVM端配置
 
-1. PiKVM安装tailsacale客户端。
+1. PiKVM侧启动tailsacale客户端。
 
     !!! warning "OPiKVM CM4已经预装客户端,不用安装客户端,直接使用tailscale up开启tailscale"
 
     ```shell
-    su -
-    curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
-    curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list
-    apt-get update
-    apt-get install tailscale
     tailscale up
     ```
 
@@ -64,11 +59,20 @@ Tailscale是一种方便且免费(个人使用)的工具，用于建立小型专
 如果出现一些故障导致网络不可用,通常的建议是从PiKVM中完全删除Tailscale并执行全新安装:
 
 ```shell
+#卸载tailscale
+
 su -
-apt-get remove tailscale
-y
+apt-get remove -y tailscale
 rm -rf /var/lib/tailscale /var/cache/tailscale
 reboot
+
+#重新安装tailscale
+
+su -
+apt-get update
+apt-get install tailscale
+
 ```
 
-按照开头的说明重新安装Tailscale。
+<!-- curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg | sudo tee /usr/share/keyrings/tailscale-archive-keyring.gpg >/dev/null
+curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/jammy.tailscale-keyring.list | sudo tee /etc/apt/sources.list.d/tailscale.list -->
