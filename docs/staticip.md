@@ -46,5 +46,4 @@
 
 !!!warning "reboot重启PiKVM后使配置生效"
 
-
 ![nmtui10](img/nmtui/nmtui10.jpg){:width="800px" .off-glb}

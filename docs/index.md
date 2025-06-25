@@ -65,7 +65,7 @@ OPiKVM 基于开源的 PiKVM 系统针对国产Pi平台进行适配，意在打�
 
 ### :material-open-source-initiative:{ .lg .middle } __[ KVMD 4.86 ] - 2025-6-24__
 
-- 升级版本,基于 KVMD 4.85 版本发布
+- 升级版本,基于 KVMD 4.86 版本发布
 - 新增HDMI输入自动检测分辨率功能，无需再手动选择分辨率
 - 新增[模拟USB网卡/RDP代理](usb_ethernet.md)功能
 - 优化`文件传输`脚本，预设快捷按钮

@@ -48,11 +48,11 @@
 
 ### Web UI登录
 
-- 打开浏览器输入PiKVM的ip地址，ip地址会在oled屏幕上显示,输入[`PiKVM Web`](auth.md)用户名密码，如果开启了[2FA](auth.md#2fa-two-factor-authentication)功能，也请输入2FA code
+* 打开浏览器输入PiKVM的ip地址，ip地址会在oled屏幕上显示,输入[`PiKVM Web`](auth.md)用户名密码，如果开启了[2FA](auth.md#2fa-two-factor-authentication)功能，也请输入2FA code
 
     ![login](img/login/login.jpg){.off-glb}
 
-- 登录成功后会跳转至网页控制台，分别为`KVM`、`Terminal终端`、`登出`按钮
+* 登录成功后会跳转至网页控制台，分别为`KVM`、`Terminal终端`、`登出`按钮
 
     ![session](img/login/session.jpg){.off-glb}
 
@@ -60,11 +60,11 @@
 
 ### KVM
 
-- 点击`KVM`按钮进入KVM功能界面，可以看到采集到远程主机的HDMI输出画面
+* 点击`KVM`按钮进入KVM功能界面，可以看到采集到远程主机的HDMI输出画面
 
     ![kvm_info](img/kvm_info.jpg){.off-glb}
 
-- 点击左上角OPiKVM图标，提示离开此网站，点击离开，返回主控制台
+* 点击左上角OPiKVM图标，提示离开此网站，点击离开，返回主控制台
 
     ![return](img/login/return.jpg){.off-glb}
 
