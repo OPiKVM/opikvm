@@ -26,7 +26,7 @@ OPiKVM 提供了 Wi-Fi 配网功能，使您可以将 OPiKVM 快速的接入到�
 
     在 OPiKVM 首次启动时，会自动开启该热点方便用户接入启动配网程序，你可以在终端中使用下列指令对其进行开启/关闭
 
-    ```shell
+    ```sh
     su -
     systemctl start opikvm-hotspot
     systemctl stop opikvm-hotspot

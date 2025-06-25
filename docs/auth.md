@@ -102,7 +102,7 @@ Repeat:
 
 -----
 
-## 2FA 双因素验证(Two-factor authentication)
+## 2FA 双因素验证(Two-factor authentication) { #2fa-two-factor-authentication }
 
 这是一种强力保护 PiKVM 的新方法，从 `KVM >= 3.196` 开始可用。
 如果您需要将 PiKVM 暴露在互联网中，强烈建议启用它。

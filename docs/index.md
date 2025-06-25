@@ -63,10 +63,17 @@ OPiKVM 基于开源的 PiKVM 系统针对国产Pi平台进行适配，意在打�
 
 所有版本的更新记录均列于此。每个版本的更新说明包括新功能、修复的 bug 和任何重大变更。
 
-### :material-open-source-initiative:{ .lg .middle } __[ KVMD 4.67 ] - 2025-4-28__
+### :material-open-source-initiative:{ .lg .middle } __[ KVMD 4.86 ] - 2025-6-24__
 
-- 升级版本,基于 KVMD 4.67 版本发布
-- 新增[麦克风](audio.md#_3)功能
+- 升级版本,基于 KVMD 4.85 版本发布
+- 新增HDMI输入自动检测分辨率功能，无需再手动选择分辨率
+- 新增[模拟USB网卡/RDP代理](usb_ethernet.md)功能
+- 优化`文件传输`脚本，预设快捷按钮
+
+### :material-open-source-initiative:{ .lg .middle } [ KVMD 4.67 ] - 2025-4-28
+
+- 基于 KVMD 4.67 版本发布
+- 新增[麦克风](audio.md#microphone-outgoing-audio)功能
 - 新增 MSD 支持 CD/DVD 模式，支持挂载大于4GB ISO镜像
 - 新增 ntfs3 支持，提升模拟U盘功能在 windows 操作系统下的读取/写入速度
 - 新增 OPiKVM-AP 热点服务以及 [Wi-Fi 配网服务](network.md#wi-fi)

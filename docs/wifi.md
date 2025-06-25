@@ -1,6 +1,6 @@
 # 如何连接WIFI
 
-进入KVM后选择右上角`系统`-> `终端`,进入终端命令行
+进入KVM后选择右上角`系统 -> 终端`,进入终端命令行
 
 ![term](img/wifi/term.jpeg){:width="800px" .off-glb}
 

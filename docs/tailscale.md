@@ -14,7 +14,7 @@ Tailscale是一种方便且免费(个人使用)的工具，用于建立小型专
 
     !!! warning "OPiKVM CM4已经预装客户端,不用安装客户端,直接使用tailscale up开启tailscale"
 
-    ```shell
+    ```sh
     tailscale up
     ```
 
@@ -58,7 +58,7 @@ Tailscale是一种方便且免费(个人使用)的工具，用于建立小型专
 
 如果出现一些故障导致网络不可用,通常的建议是从PiKVM中完全删除Tailscale并执行全新安装:
 
-```shell
+```sh
 #卸载tailscale
 
 su -
