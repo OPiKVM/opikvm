@@ -1,0 +1,1356 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Floyde.lcy">
+      
+      
+        <link rel="canonical" href="https://opikvm.github.io/opikvm/usb_ethernet/">
+      
+      
+        <link rel="prev" href="../simUSB/">
+      
+      
+        <link rel="next" href="../card2msd/">
+      
+      
+      <link rel="icon" href="../_assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>模拟USB网卡/RDP代理 - OPiKVM</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Montserrat";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usb" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<div class="announce_nav">
+  手机浏览器请点击
+  <div class="md-header__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" fill="white"  viewbox="0 0 24 24">
+      <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path>
+    </svg>
+  </div>
+  打开网站导航浏览更多内容
+</div>
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="OPiKVM" class="md-header__button md-logo" aria-label="OPiKVM" data-md-component="logo">
+      
+  <img src="../_assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPiKVM
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              模拟USB网卡/RDP代理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/floydelcy/kvmd/tree/kvmd-rockchip" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OPiKVM
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OPiKVM" class="md-nav__button md-logo" aria-label="OPiKVM" data-md-component="logo">
+      
+  <img src="../_assets/logo.svg" alt="logo">
+
+    </a>
+    OPiKVM
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/floydelcy/kvmd/tree/kvmd-rockchip" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OPiKVM
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    使用手册
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            使用手册
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CM4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OPiKVM CM4 手册
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    功能指南
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            功能指南
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    如何接入网络
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    配置指南
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    系统更新
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    身份验证以及2FA验证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    视频模式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    音频/麦克风
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atx_board/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ATX控制板
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    USB 设备配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../id/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    设备标识(PID,VID,EDID)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../msd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MSD大容量存储驱动器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simUSB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模拟U盘/文件传输
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    模拟USB网卡/RDP代理
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    模拟USB网卡/RDP代理
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opikvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过 OPiKVM 进行路由
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDP远程桌面协议代理
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../card2msd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    更换SD卡
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tailscale VPN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wifi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    连接WIFI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staticip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    设置静态IP地址
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USBserial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    串口服务器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    进阶用法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      基本配置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opikvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      通过 OPiKVM 进行路由
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdp" class="md-nav__link">
+    <span class="md-ellipsis">
+      RDP远程桌面协议代理
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="usb">USB 以太网</h1>
+<p>该功能可以模拟USB网卡，便可以为目标主机提供以太网络连接。</p>
+<p>结合DNS服务器、FTP或SMB等配置，可大幅扩展OPiKVM功能。</p>
+<hr />
+<h2 id="_1">基本配置</h2>
+<div class="admonition info">
+<p class="admonition-title">USB 限制</p>
+<p>每个模拟的 USB 设备消耗一个名为 <strong>endponits</strong> 的有限硬件资源。</p>
+<p>根据设备的不同，所需的端点数量不同：</p>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>端点数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>键盘、鼠标</td>
+<td>每个 1 个</td>
+</tr>
+<tr>
+<td>大容量存储驱动器</td>
+<td>每个 2 个</td>
+</tr>
+<tr>
+<td>USB 麦克风</td>
+<td>2 个</td>
+</tr>
+<tr>
+<td>USB 网络、USB 串口</td>
+<td>每个 3 个</td>
+</tr>
+</tbody>
+</table>
+<p><strong>总的来说，PiKVM 为 USB 模拟提供了 9 个端点</strong>，以下是OPiKVM默认使用的：</p>
+<ul>
+<li>键盘</li>
+<li>鼠标(Absolute)</li>
+<li>大容量存储驱动器</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>在浏览本页之前，建议先阅读 <a href="../config/">OPiKVM 配置指南</a>
+以便了解术语以及以下参数的具体作用方式。</p>
+</div>
+<ol>
+<li>
+<p>编辑 <code>/etc/kvmd/override.yaml</code> 并添加以下内容：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">otg</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">devices</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">ethernet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">            </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ncm</span>
+<span class="w">            </span><span class="nt">host_mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">48:6f:73:74:50:43</span>
+<span class="w">            </span><span class="nt">kvm_mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">42:61:64:55:53:42</span>
+</code></pre></div>
+<p><code>enabled: true</code> 用于启用 USB 网络。其余参数的含义在下表中描述。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>host_mac</code></td>
+<td><code>&lt;random&gt;</code></td>
+<td>主机侧网络接口的 MAC 地址。</td>
+</tr>
+<tr>
+<td><code>kvm_mac</code></td>
+<td><code>&lt;random&gt;</code></td>
+<td>OPiKVM 端名为 <code>usb0</code> 的网络接口 MAC 地址。</td>
+</tr>
+<tr>
+<td><code>driver</code></td>
+<td><code>ecm</code></td>
+<td>USB 网络协议驱动。针对不同操作系统需选用不同驱动，见下表。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>驱动</th>
+<th>操作系统兼容性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ecm</code></td>
+<td>Linux；Mac OS</td>
+</tr>
+<tr>
+<td><code>eem</code></td>
+<td>Linux</td>
+</tr>
+<tr>
+<td><code>rndis</code></td>
+<td>Windows &gt;= 7 <sup><a href="#rndis"><em>1</em></a></sup>；Linux &gt; 2.6.13</td>
+</tr>
+<tr>
+<td><code>ncm</code></td>
+<td>Windows &gt;= 10；Linux &gt; 2.6.37；Mac OS</td>
+</tr>
+</tbody>
+</table>
+<p><a name="rndis"><em>1</em></a>：<em>使用rndis驱动时，无法同时开启附加大容量存储驱动器，但是不影响默认的MSD大容量存储</em></p>
+</li>
+<li>
+<p>建议使用 <code>kvmd-otgnet</code> 服务在主机端自动配置 USB 网络。
+    该服务会配置防火墙、分配地址到本地 OPiKVM 接口 <code>usb0</code>，并启动 DHCP，使目标主机获取 IPv4 地址。</p>
+<p>默认情况下，<code>usb0</code> 接口会被分配 <code>172.30.30.1/24</code>。
+当主机通过 DHCP 请求时，会从网络 <code>172.30.30.0/24</code> 中分配一个地址给主机。</p>
+<p>出于安全考虑，主机到 OPiKVM 侧的所有入站连接均被阻止（仅允许 ICMP 和 UDP 67 端口的 DHCP 请求）。
+若需允许主机访问 OPiKVM 接口，需要在 <code>/etc/kvmd/override.yaml</code> 中添加如下注释：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">otgnet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">firewall</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">allow_tcp</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">80</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">443</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+<p>其他实用的防火墙选项如下：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>allow_icmp</code></td>
+<td><code>true</code></td>
+<td>是否允许 ICMP 到 OPiKVM。</td>
+</tr>
+<tr>
+<td><code>allow_tcp</code></td>
+<td><code>[]</code></td>
+<td>允许从主机到 OPiKVM 的 TCP 端口列表。</td>
+</tr>
+<tr>
+<td><code>allow_udp</code></td>
+<td><code>[]</code></td>
+<td>允许从主机到 OPiKVM 的 UDP 端口列表。</td>
+</tr>
+<tr>
+<td><code>forward_iface</code></td>
+<td><code>&lt;none&gt;</code></td>
+<td>OPiKVM 用于网络转发的默认网关接口（见下文）。</td>
+</tr>
+</tbody>
+</table>
+<p>更多参数和命令请通过 <code>kvmd -m</code> 查阅。</p>
+</li>
+<li>
+<p>使用命令启用该服务：</p>
+<p><code>kvmd-otgnet</code> 服务与 <code>opikvm-hotspot</code> 热点服务存在冲突，在开启该服务前，确认热点服务关闭</p>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>disable<span class="w"> </span>--now<span class="w"> </span>opikvm-hotspot
+systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>kvmd-otgnet
+</code></pre></div>
+</li>
+<li>
+<p>执行重启：
+    <div class="highlight"><pre><span></span><code>reboot
+</code></pre></div></p>
+</li>
+</ol>
+<h2 id="opikvm">通过 OPiKVM 进行路由</h2>
+<p>默认情况下，<code>kvmd-otgnet</code> 仅支持 OPiKVM 与目标主机间通信。
+通过 USB 以太网功能，目标主机无法访问 OPiKVM 之外的其他主机。
+如需主机访问外部网络（通过USB以太网功能），需要在 <code>/etc/kvmd/override.yaml</code> 中进行额外配置。</p>
+<ol>
+<li>
+<p>在 <code>firewall</code> 下添加 <code>forward_iface: &lt;接口名&gt;</code>，用于指定转发请求的网络接口（默认网关）。
+    通常若使用内置以太网口，则为 <code>end1</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">otgnet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">firewall</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">forward_iface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">end1</span>
+</code></pre></div>
+</li>
+<li>
+<p>添加 DNS 服务器以提供主机名解析服务。
+    例如，使用 <code>8.8.8.8</code> 作为 DNS 服务器，可通过 <code>dnsmasq</code> DHCP 选项实现：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">otgnet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">post_start_cmd_append</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;--dhcp-option=6,8.8.8.8&quot;</span>
+</code></pre></div>
+</li>
+<li>
+<p>将上述两项合并：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">otgnet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">firewall</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">forward_iface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">end1</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">post_start_cmd_append</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;--dhcp-option=6,8.8.8.8&quot;</span>
+</code></pre></div>
+</li>
+<li>
+<p>若需为目标主机启用Internet访问，添加：</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="nt">otgnet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">iface</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">net</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.65.0.0/28</span>
+</code></pre></div>
+<p><code>net</code> 参数定义了 <code>usb0</code> 网络的 IP 地址范围。主机会自动从该网段获取 IP 地址及上述 DNS 服务器。
+注意：此网段不应与 OPiKVM 所在网络相同。</p>
+<p>更多参数和命令请通过 <code>kvmd -m</code> 查阅。</p>
+</li>
+<li>
+<p>重启OPiKVM</p>
+</li>
+</ol>
+<details class="example">
+<summary>以下示例展示了一个既能访问 OPiKVM 又可上网的主机配置：</summary>
+<div class="highlight"><pre><span></span><code><span class="nt">otgnet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">firewall</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">allow_tcp</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">80</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">443</span><span class="p p-Indicator">]</span>
+<span class="w">        </span><span class="nt">forward_iface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">end1</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">post_start_cmd_append</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;--dhcp-option=6,1.1.1.1,1.0.0.1&quot;</span>
+<span class="w">    </span><span class="nt">iface</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">ip_cmd</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/bin/ip</span>
+<span class="w">        </span><span class="nt">net</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.65.0.0/28</span>
+</code></pre></div>
+</details>
+<h2 id="rdp">RDP远程桌面协议代理</h2>
+<p>依靠 OPiKVM 的 nginx 服务，我们可以为目标主机创建简单的 RDP 代理服务</p>
+<ol>
+<li>
+<p>添加以下配置 USB 以太网功能并开启 RDP 代理</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>使用 RDP 代理功能时，目标主机系统版本：</p>
+<p>windows 10 建议使用 rndis 驱动</p>
+<p>windows 11 建议使用 ncm 驱动</p>
+<p>如果不开启 RDP 代理功能，windows 10/11 都建议使用 ncm 驱动</p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="nt">otg</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">devices</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">ethernet</span><span class="p">:</span>
+<span class="w">            </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">            </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ncm</span>
+<span class="w">            </span><span class="nt">host_mac</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">48:6f:73:74:50:43</span>
+<span class="nt">otgnet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">commands</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">post_start_cmd_append</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--dhcp-host=48:6f:73:74:50:43,{dhcp_ip_end},server</span>
+<span class="w">    </span><span class="nt">firewall</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">allow_tcp</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">80</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">443</span><span class="p p-Indicator">]</span>
+<span class="nt">nginx</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">rdp</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+</li>
+<li>
+<p>重启OPiKVM</p>
+<div class="highlight"><pre><span></span><code>reboot
+</code></pre></div>
+</li>
+<li>
+<p>通过远程桌面访问目标主机</p>
+<p>填写 OPiKVM 的 IP 地址加上 33389 端口号</p>
+<p>用户名为目标主机 windows 登录名，进行访问</p>
+<p><img alt="rdp" class="off-glb" src="../img/usb-eth/rdp.jpg" width="300px" /></p>
+</li>
+</ol>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月29日 20:39:48 CST">2025年6月29日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月29日 20:39:48 CST">2025年6月29日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+<div class="md-footer-meta md-typeset">
+  <div class="md-footer-meta__inner md-grid">
+    <div class="md-copyright">
+
+  <div class="md-copyright__highlight">
+    Copyright &copy; 2023-2025 Floyde.lcy
+  </div>
+
+
+  Made with
+  <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    Material for MkDocs
+  </a>
+
+  <div>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>人次</span>
+  </div>
+
+</div>
+</div>
+</div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../_assets/js/busuanzi.pure.mini.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": false, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

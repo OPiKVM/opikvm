@@ -1,0 +1,1340 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Floyde.lcy">
+      
+      
+        <link rel="canonical" href="https://opikvm.github.io/opikvm/auth/">
+      
+      
+        <link rel="prev" href="../webui/">
+      
+      
+        <link rel="next" href="../video/">
+      
+      
+      <link rel="icon" href="../_assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>身份验证以及2FA验证 - OPiKVM</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Montserrat";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2fa" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+<div class="announce_nav">
+  手机浏览器请点击
+  <div class="md-header__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" fill="white"  viewbox="0 0 24 24">
+      <path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path>
+    </svg>
+  </div>
+  打开网站导航浏览更多内容
+</div>
+
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="OPiKVM" class="md-header__button md-logo" aria-label="OPiKVM" data-md-component="logo">
+      
+  <img src="../_assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            OPiKVM
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              身份验证以及2FA验证
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/floydelcy/kvmd/tree/kvmd-rockchip" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OPiKVM
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="OPiKVM" class="md-nav__button md-logo" aria-label="OPiKVM" data-md-component="logo">
+      
+  <img src="../_assets/logo.svg" alt="logo">
+
+    </a>
+    OPiKVM
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/floydelcy/kvmd/tree/kvmd-rockchip" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    OPiKVM
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    简介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    使用手册
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            使用手册
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CM4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OPiKVM CM4 手册
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    功能指南
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            功能指南
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    如何接入网络
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    配置指南
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    系统更新
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../webui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Web UI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    身份验证以及2FA验证
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    身份验证以及2FA验证
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web 终端中的 Root 访问
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      更改 Linux 密码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      更改 KVM 密码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2fa-two-factor-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      2FA 双因素验证(Two-factor authentication)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-expiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      会话过期(Session expiration)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      禁用身份验证
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../video/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    视频模式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    音频/麦克风
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../atx_board/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ATX控制板
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    USB 设备配置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../id/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    设备标识(PID,VID,EDID)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../msd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MSD大容量存储驱动器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simUSB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模拟U盘/文件传输
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usb_ethernet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    模拟USB网卡/RDP代理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../card2msd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    更换SD卡
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tailscale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tailscale VPN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wifi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    连接WIFI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../staticip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    设置静态IP地址
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USBserial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    串口服务器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    进阶用法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#web-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      Web 终端中的 Root 访问
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      更改 Linux 密码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      更改 KVM 密码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2fa-two-factor-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      2FA 双因素验证(Two-factor authentication)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-expiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      会话过期(Session expiration)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      禁用身份验证
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2fa">身份验证以及 2FA 验证</h1>
+<div class="admonition warning">
+<p class="admonition-title">PiKVM 默认密码:</p>
+<ul>
+<li>
+<p><strong>Linux 操作系统级别的管理员</strong>（SSH、控制台等）:</p>
+<ul>
+<li>用户名 <code>root</code> 和 <code>orangepi</code></li>
+<li>密码 <code>orangepi</code></li>
+</ul>
+</li>
+<li>
+<p><strong>KVM 用户</strong>（Web 界面，<a href="https://docs.pikvm.org/api/">API</a>，<a href="https://docs.pikvm.org/vnc/">VNC</a>等）:</p>
+<ul>
+<li>用户名 <code>admin</code></li>
+<li>密码 <code>admin</code></li>
+<li>默认未启用2FA</li>
+</ul>
+</li>
+</ul>
+<p><strong>它们是两个独立的账户，具有独立的密码。</strong></p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">不要忘记在新设备上更改这两个密码</p>
+<p>本页将介绍如何更改这些密码并启用双因素身份验证（2FA）。</p>
+<p>如果计划将 PiKVM 暴露到互联网或在不信任的网络中使用，强烈建议启用 2FA。</p>
+</div>
+<p>除了 KVM 用户和 Linux root 之外，还有一些其他的身份验证实体：</p>
+<ul>
+<li>
+<p><strong>操作系统用户 <code>kvmd-webterm</code></strong></p>
+<p>这是一个在 PiKVM 操作系统中具有非特权权限的特殊用户。
+它不能用于登录或通过 SSH 进行远程访问。密码访问和 <code>sudo</code> 也被禁用。
+它仅用于 Web 终端。出于安全原因，设置了这些限制。</p>
+</li>
+<li>
+<p><a href="https://docs.pikvm.org/vnc/"><strong>VNCAuth 密钥</strong></a> - 默认禁用。</p>
+</li>
+<li>
+<p><a href="https://docs.pikvm.org/ipmi/"><strong>IPMI 密码</strong></a> - 默认禁用。</p>
+</li>
+</ul>
+<hr />
+<h2 id="web-root">Web 终端中的 Root 访问</h2>
+<p>如上所述，Web 终端以 <code>kvmd-webterm</code> 用户运行，并禁用了 <code>sudo</code> 和密码访问。
+然而，大多数 PiKVM 管理命令需要 <code>root</code> 权限。
+要在 Web 终端中获得它，输入 <code>su -</code>，然后输入 <code>root</code> 用户密码：</p>
+<div class="highlight"><pre><span></span><code><span class="go">[kvmd-webterm@opi-kvm:~$] su -</span>
+<span class="go">...</span>
+<span class="go">[root@opi-kvm:~#]</span>
+</code></pre></div>
+<details class="example">
+<summary>如何禁用 Web 终端</summary>
+<p>有时 PiKVM 设备的实际所有者和允许使用它的用户是不同的人。
+因此，你可能想禁用 Web UI 中的控制台访问。为此，请执行以下操作：</p>
+<div class="highlight"><pre><span></span><code><span class="go">[kvmd-webterm@opi-kvm:~$] su -</span>
+<span class="go">[root@opi-kvm:~#] systemctl disable --now kvmd-webterm</span>
+<span class="go">[root@opi-kvm:~#]</span>
+</code></pre></div>
+<p>对于你自己对 PiKVM 操作系统的访问，仍然可以使用 SSH。</p>
+</details>
+<hr />
+<h2 id="linux">更改 Linux 密码</h2>
+<div class="highlight"><pre><span></span><code><span class="go">[root@opi-kvm:~#] passwd</span>
+<span class="go">New password:</span>
+<span class="go">Retype new password:</span>
+<span class="go">passwd: password updated successfully</span>
+<span class="go">[root@opi-kvm:~#]</span>
+</code></pre></div>
+<hr />
+<h2 id="kvm">更改 KVM 密码</h2>
+<p>此密码用于 Web UI 登录、访问 <a href="https://github.com/pikvm/pikvm/blob/master/docs/api.md">API</a>、<a href="https://github.com/pikvm/pikvm/blob/master/docs/vnc.md">VNC</a>(如果启用)
+以及其他与操作系统 shell 无关的功能。</p>
+<p>默认情况下，配置了类似于 Apache Server 的身份验证方法：用户名和密码
+以加密方式存储在 <code>/etc/kvmd/htpasswd</code> 文件中。要管理它们，可以使用 <code>kvmd-htpasswd</code> 工具。</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@opi-kvm:~#]kvmd-htpasswd set admin   #</span>修改web密码
+<span class="go">Password:</span>
+<span class="go">Repeat:</span>
+<span class="go">[root@opi-kvm:~#]</span>
+</code></pre></div>
+<p><code>admin</code> 是默认用户的名称。</p>
+<details class="example">
+<summary>如何添加 KVM 用户</summary>
+<p>你可以创建多个不同的用户，使用不同的密码访问 Web UI，但请记住，它们都具有相同的权限：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@opi-kvm:~#]kvmd-htpasswd set &lt;user&gt; # </span>添加新用户
+<span class="gp">[root@opi-kvm:~#]kvmd-htpasswd list # </span>显示所有web<span class="w"> </span>ui账户
+<span class="gp">[root@opi-kvm:~#]kvmd-htpasswd del &lt;user&gt; # </span>移除一个账户
+</code></pre></div>
+<p>目前无法为不同的 KVM 用户创建任何ACL。</p>
+</details>
+<hr />
+<h2 id="2fa-two-factor-authentication">2FA 双因素验证(Two-factor authentication)</h2>
+<p>这是一种强力保护 PiKVM 的新方法，从 <code>KVM &gt;= 3.196</code> 开始可用。
+如果您需要将 PiKVM 暴露在互联网中，强烈建议启用它。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>使用 2FA 排除了使用 <a href="https://github.com/pikvm/pikvm/blob/master/docs/ipmi.md">IPMI</a> 和 <a href="https://github.com/pikvm/pikvm/blob/master/docs/vnc.md">VNC with vncauth</a> (默认情况下均禁用)的可能性。
+它还略微影响了 <a href="https://github.com/pikvm/pikvm/blob/master/docs/api.md">API</a> 和带有用户/密码的常规 VNC 的使用，下文会介绍。</p>
+<p>请注意，2FA 不影响 Linux 操作系统对 <code>root</code> 用户的访问，因此请确保为 SSH 访问设置强密码(或设置<a href="https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server">密钥访问</a>)。</p>
+</div>
+<details class="example">
+<summary>在 PiKVM 上启用 2FA 验证</summary>
+<ol>
+<li>
+<p><strong>确保 NTP 服务正在运行( <code>timedatectl</code> 命令)，否则您将无法访问</strong>。时区无关紧要。</p>
+</li>
+<li>
+<p>将 <strong>Google Authenticator</strong> 应用安装到您的移动设备
+    (<a href="https://apps.apple.com/us/app/google-authenticator/id388497605">iOS</a>,
+    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2">Android</a>)。 用来生成一次性访问代码。</p>
+</li>
+<li>
+<p>在 PiKVM 上为一次性密码创建密钥，此命令会生成一个二维码：
+   <div class="highlight"><pre><span></span><code><span class="go">[root@opi-kvm:~#]</span>
+<span class="go">[root@opi-kvm:~#] kvmd-totp init</span>
+<span class="go">[root@opi-kvm:~#]</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>运行 Google Authenticator 并扫描二维码。</p>
+</li>
+<li>
+<p>现在在 PiKVM 登录页面上，您需要在<code>2FA验证</code>后输入6位验证码进行登录。</p>
+</li>
+</ol>
+<p><em>如果你无法使用 Google 服务，你同样可以使用</em>
+<strong><em><a href="https://www.microsoft.com/zh-cn/security/mobile-authenticator-app">Microsoft Authenticator</a></em></strong>
+<em>来实现 2FA 功能，步骤与上述一致</em></p>
+</details>
+<p>所有 Web UI 用户都需要在登录时输入一次性密码。
+换言之，<strong>密钥对所有用户都是相同的</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">注意</p>
+<p>使用 2FA 进行 API 或 VNC 身份验证时，您需要将一次性密码附加到密码后面，不要留空格。
+例如：密码是 <code>foobar</code> ，一次性密码是 <code>123456</code>，那么你需要使用 <code>foobar123456</code> 作为密码。</p>
+</div>
+<p>要查看密钥的当前二维码，请使用命令<code>kvmd-totp show</code>。</p>
+<p>要禁用2FA并删除密钥，请使用命令<code>kvmd-totp del</code>。</p>
+<hr />
+<h2 id="session-expiration">会话过期(Session expiration)</h2>
+<p>从 KVMD 4.53 开始，在 PiKVM Web UI 登录页面，你可以选择身份验证会话的最大持续时间：
+1 小时、12 小时或无限制（直到 PiKVM 重启或 <code>kvmd</code> 系统服务重启）。
+所选的会话持续时间仅适用于此浏览器和此用户。
+当时间到期时，身份验证 cookie 会被撤销。
+它不会影响同一用户在其他浏览器中的会话。</p>
+<p>请注意，如果你点击 <strong>Logout</strong> 按钮，它将注销该用户在所有浏览器中的所有会话。</p>
+<div class="admonition note">
+<p class="admonition-title">长时间连接</p>
+<p>PiKVM 积极使用 WebSockets 和长期 HTTP 连接进行视频流传输。</p>
+<p>如果会话过期，将导致其授权 cookie 被撤销，
+且使用该授权 cookie 的新连接将无法建立。
+然而，长期连接不会被终止，直到用户关闭浏览器标签页。
+会话过期功能主要用于在用户关闭浏览器时“清理”，但没有点击注销按钮。</p>
+<p>未来我们计划添加立即终止过期连接的功能。</p>
+</div>
+<details class="example">
+<summary>如何设置全局会话过期限制</summary>
+<p>你可以设置默认过期时间，以限制用户创建无限会话的能力。
+这将是一个不可见的限制，适用于 KVM 登录 Web UI（但<strong>不适用于 VNC</strong>，请注意 VNC 会话始终是无限的）。</p>
+<ol>
+<li>
+<p>编辑文件 <code>/etc/kvmd/override.yaml</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">kvmd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">auth</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">expire</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">21600</span><span class="w">  </span><span class="c1"># 21600 秒即 6 小时</span>
+</code></pre></div>
+</li>
+<li>
+<p>重启 <code>kvmd</code> 服务并确保该限制已应用：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@opi-kvm ~]# </span>systemctl<span class="w"> </span>restart<span class="w"> </span>kvmd
+<span class="gp">[root@opi-kvm ~]# </span>journalctl<span class="w"> </span>-u<span class="w"> </span>kvmd<span class="w"> </span>-g<span class="w"> </span><span class="s1">&#39;Maximum user session&#39;</span>
+<span class="go">... INFO --- Maximum user session time is limited: 6:00:00</span>
+</code></pre></div>
+</li>
+</ol>
+</details>
+<hr />
+<h2 id="_1">禁用身份验证</h2>
+<p>如果需要，你可以禁用 KVM 访问的身份验证（Web UI、VNC 等，除了 SSH）。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>不要在不信任的网络中这样做，因为你可能会给潜在的攻击者访问目标机器的权限。</p>
+<p>如果你真的需要此功能，请考虑禁用 Web 终端，以免开放对 PiKVM 控制台的 shell 访问。
+你仍然可以使用 SSH 访问控制台。</p>
+</div>
+<details class="example">
+<summary>如何禁用身份验证</summary>
+<ol>
+<li>
+<p>编辑文件 <code>/etc/kvmd/override.yaml</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">kvmd</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">auth</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+</li>
+<li>
+<p>重启 <code>kvmd</code>，可选地禁用 Web 终端并切换文件系统为只读模式：</p>
+<div class="highlight"><pre><span></span><code><span class="gp">[root@opi-kvm ~]# </span>systemctl<span class="w"> </span>restart<span class="w"> </span>kvmd
+<span class="gp">[root@opi-kvm ~]# </span>systemctl<span class="w"> </span>disable<span class="w"> </span>--now<span class="w"> </span>kvmd-webterm<span class="w">  </span><span class="c1"># 如果你有 SSH 访问权限，这一步是可选的</span>
+</code></pre></div>
+</li>
+</ol>
+</details>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月29日 20:39:48 CST">2025年6月29日</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月29日 20:39:48 CST">2025年6月29日</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+<div class="md-footer-meta md-typeset">
+  <div class="md-footer-meta__inner md-grid">
+    <div class="md-copyright">
+
+  <div class="md-copyright__highlight">
+    Copyright &copy; 2023-2025 Floyde.lcy
+  </div>
+
+
+  Made with
+  <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+    Material for MkDocs
+  </a>
+
+  <div>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>人次</span>
+  </div>
+
+</div>
+</div>
+</div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.top", "navigation.tracking", "navigation.expand", "search.highlight", "search.share", "search.suggest", "content.code.copy"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../_assets/js/busuanzi.pure.mini.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": false, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
