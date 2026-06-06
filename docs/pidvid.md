@@ -13,7 +13,7 @@
         serial: CAFEBABE
     ```
 
-* 你可以通过以下示例更改显示内容，编辑 `/etc/kvmd/override.yaml` 文件：
+* 你可以通过以下示例更改显示内容，编辑 `/etc/kvmd/override.d/otg.yaml` 文件：
 
     ```yaml
     otg:

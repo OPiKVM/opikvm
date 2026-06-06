@@ -32,7 +32,7 @@
 
 ## 关于 OPiKVM
 
-OPiKVM 基于开源的 PiKVM 系统针对国产Pi平台进行适配，意在打造一个平价的 IP-KVM 设备，通过该系统可以轻松的对主机进行 BIOS 级别的维护管理。
+OPiKVM 基于开源的 PiKVM 系统针对国产SOC平台进行适配，意在打造一个平价的 IP-KVM 设备，通过该系统可以轻松的对主机进行 BIOS 级别的维护管理。
 
 目前 OPiKVM 有两款产品：OPiKVM Zero3 和 OPiKVM CM4，两款最大的区别在于 CM4 支持了 H.264 的硬件编码串流，相比于 Zero3 的M JPEG 编码，极大的减少了网络带宽需求。
 
@@ -63,7 +63,13 @@ OPiKVM 基于开源的 PiKVM 系统针对国产Pi平台进行适配，意在打�
 
 所有版本的更新记录均列于此。每个版本的更新说明包括新功能、修复的 bug 和任何重大变更。
 
-### :material-open-source-initiative:{ .lg .middle } __[ KVMD 4.86 ] - 2025-6-24__
+### :material-open-source-initiative:{ .lg .middle } __[ KVMD 4.168 ] - 2026-5-18__
+
+- 升级版本,基于 KVMD 4.171 版本发布
+- 增加 Pikvm Switch UI 中文翻译
+- 增加 [测量延迟](latency.md) 功能
+
+### :material-open-source-initiative:{ .lg .middle } [ KVMD 4.86 ] - 2025-6-24
 
 - 升级版本,基于 KVMD 4.86 版本发布
 - 新增HDMI输入自动检测分辨率功能，无需再手动选择分辨率

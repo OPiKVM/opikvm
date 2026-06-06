@@ -85,23 +85,28 @@ nav:
   - "简介": index.md
   - "使用手册":
     - "OPiKVM CM4 手册": CM4.md
-  - "功能指南":
+  - "开始使用":
+      - "Web UI 概述": webui.md
+      - "配置指南": config.md
+      - "身份验证以及2FA验证": auth.md
+      - "系统更新": upgrade.md
+  - "网络连接":
     - "如何接入网络": network.md
-    - "配置指南": config.md
-    - "系统更新": upgrade.md
-    - "Web UI": webui.md
-    - "身份验证以及2FA验证": auth.md
+    - "Tailscale VPN": tailscale.md
+    - "连接WIFI": wifi.md
+    - "设置静态IP地址": staticip.md
+  - "视频设置":
     - "视频模式": video.md
     - "音频/麦克风": audio.md
+    - "测量延迟": latency.md
+    - "HDMI EDID 调整": edid.md
+  - "外设":
     - "ATX控制板": atx_board.md
     - "USB 设备配置" : usb.md
-    - "设备标识(PID,VID,EDID)": id.md
     - "MSD大容量存储驱动器": msd.md
     - "模拟U盘/文件传输": simUSB.md
     - "模拟USB网卡/RDP代理": usb_ethernet.md
     - "更换SD卡": card2msd.md
-    - "Tailscale VPN": tailscale.md
-    - "连接WIFI": wifi.md
-    - "设置静态IP地址": staticip.md
     - "串口服务器": USBserial.md
-  - "进阶用法": advanced.md
+  - "高级功能":
+    - "设备标识(PID,VID,EDID)": id.md

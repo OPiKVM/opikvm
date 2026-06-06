@@ -22,15 +22,14 @@ Audio:           yes
 
 ```console
 [root@opi-kvm ~]#
-[root@opi-kvm ~]# kvmd-edidconf --set-mfc-id=TTP --set-product-id=0x5B81 --set-serial=0x8DE11B79 --set-monitor-name=TOSHIBA --set-monitor-serial=ABCD1234 --apply
+[root@opi-kvm ~]# kvmd-edidconf --set-mfc-id=TTP --set-product-id=0x5B81 --set-serial=0x8DE11B79 --set-monitor-name=TOSHIBA --set-monitor-serial=ABCD1234 --device=/dev/kvmd-subdev --apply
+
 Manufacturer ID: TTP
 Product ID:      0x5B81 (23425)
 Serial number:   0x8DE11B79 (2380340089)
 Monitor name:    TOSHIBA
 Monitor serial:  ABCD1234
 Audio:           yes
-...
-[root@pi-kvm ~]# echo 1 > /sys/bus/i2c/devices/1-002b/reset
 ```
 
 完整制造商ID列表请访问：[这里](https://uefi.org/pnp_id_list).

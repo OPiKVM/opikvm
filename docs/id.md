@@ -34,6 +34,8 @@ EDID（Extended Display Identification Data）负责设置显示器信息，同�
 
 {!_edidconf_options.md!}
 
+如需查看自定义 EDID 的详细指南，请访问[此页面](edid.md)。您还可以在该页面了解如何快速采用真实显示器的 EDID。
+
 -----
 
 ## USB 标识符
